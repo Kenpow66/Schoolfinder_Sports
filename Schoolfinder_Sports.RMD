@@ -42,9 +42,22 @@ Sports <- read.csv('2023-1221_SchoolFinder_CER_Sports.csv')
 
 Baseball <- Sports[, c("campus_number", "baseball")]
 
+## convert "-99" to "0"
+
+Baseball["baseball"][Baseball["baseball"] == "-99"] <- "0"
+print(Baseball)
+
+
+
 ##Identify the data types or 'class'
 
-### sapply(Sports, class)
+sapply(Baseball, class)
+
+Baseball %>%
+  separate(Baseball,
+           col = baseball,
+           into = c("1", "2", "3", "4","5", "6", NA),
+           sep =",")
 
 
 ### Sports$campus_number <- as.character(Sports$campus_number)
