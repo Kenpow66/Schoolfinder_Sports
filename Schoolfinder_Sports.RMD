@@ -36,36 +36,24 @@ library(tidyverse)
 
 ##Load csv and create a dataframe
 
-Sports <- read.csv('2023-1221_SchoolFinder_CER_Sports.csv')
+Sports <- read.csv('2023-1221_SchoolFinder_CER_Sports.csv', stringsAsFactors = FALSE, header = TRUE)
+Sports$campus_number <- as.character(Sports$campus_number)
 
 ## Subset of data file
 
 Baseball <- Sports[, c("campus_number", "baseball")]
 
-## convert "-99" to "0"
+class(Baseball$baseball)
 
-Baseball["baseball"][Baseball["baseball"] == "-99"] <- "0"
-print(Baseball)
+Baseball <- Baseball %>%
+  mutate(baseball = str_replace_all(baseball, c("1" = "boys_club", "2" = "boys_uil", "3" = "girls_club", "4" = "girls_uil", "5" = "coed_club", "6" = "coed_uil", "-99" = "NA")))
 
-
-
-##Identify the data types or 'class'
-
-sapply(Baseball, class)
-
-Baseball %>%
-  separate(Baseball,
-           col = baseball,
-           into = c("1", "2", "3", "4","5", "6", NA),
-           sep =",")
+separate(Baseball,
+         col = baseball,
+         into = c("boys_club", "boys_uil","girls_club", "girls_uil","coed_club", "coed_uil", "NA" ),
+         sep = ",")
 
 
-### Sports$campus_number <- as.character(Sports$campus_number)
-
-##Sports %>%
-  ##pivot_longer(cols = c('campus_number', 'baseball'),
-               ##names_to = 'entity_id',
-               ##values_to = 'value')
 
 
 
