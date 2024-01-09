@@ -33,7 +33,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 ##Load tidyverse**
 
 library(tidyverse)
-?separate
+?pivot_longer
 ##Load csv and create a dataframe
 
 Sports <- read.csv('2023-1221_SchoolFinder_CER_Sports.csv', stringsAsFactors = FALSE, header = TRUE)
@@ -44,21 +44,38 @@ Sports$campus_number <- as.character(Sports$campus_number)
 Baseball <- Sports[, c("campus_number", "baseball")]
 
 class(Baseball$baseball)
+####
 
 Baseball <- Baseball %>%
-  mutate(baseball = str_replace_all(baseball, c("1" = "boys_club", "2" = "boys_uil", "3" = "girls_club", "4" = "girls_uil", "5" = "coed_club", "6" = "coed_uil", "-99" = "NA")))
-
-Baseball_final <- Baseball %>% mutate(entity_id = Baseball$campus_number) %>%
-  separate_rows(baseball, sep=",") %>%
-  mutate(baseball = ifelse(is.na(baseball),0,baseball)) %>%
-  count(ind, baseball) %>%
-  spread(baseball, n, fill = 0) %>%
-  select(-2) %>% as.data.frame()
-
-Baseball_final <- Baseball %>% 
-  separate(Baseball$baseball, c("boys_club", "boys_uil", "girls_club", "girls_uil", "coed_club",  "coed_uil", "NA"), extra = "drop", fill = "right")
-    
+  mutate(baseball = str_replace_all(baseball, c("1" = "club-sports_baseball-boys", "2" = "uil-sports_baseball-boys", "3" = "club-sports_baseball-girls", "4" = "uil-sports_baseball-girls", "5" = "club-sports_baseball-coed", "6" = "uil-sports_baseball-coed", "-99" = "NA")))
   
+
+Baseball_final <- Baseball %>% mutate(ind = Baseball$campus_number) %>%
+  separate_rows(baseball, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Baseball_final)[1] <- "entity_id"
+
+
+Baseball_final[c('type', 'value')] <- str_split_fixed(Baseball_final$baseball, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Baseball_final <-filter(Baseball_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Baseball_final$baseball <- NULL
+
+Baseball_final$ind <- NULL
+
+
+### export dataframe to excel
+
+### write(Baseball_final, "baseball.csv", row.names = FALSE)
 
 
 ```
