@@ -33,7 +33,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 ##Load tidyverse**
 
 library(tidyverse)
-
+?separate
 ##Load csv and create a dataframe
 
 Sports <- read.csv('2023-1221_SchoolFinder_CER_Sports.csv', stringsAsFactors = FALSE, header = TRUE)
@@ -48,13 +48,17 @@ class(Baseball$baseball)
 Baseball <- Baseball %>%
   mutate(baseball = str_replace_all(baseball, c("1" = "boys_club", "2" = "boys_uil", "3" = "girls_club", "4" = "girls_uil", "5" = "coed_club", "6" = "coed_uil", "-99" = "NA")))
 
-separate(Baseball,
-         col = baseball,
-         into = c("boys_club", "boys_uil","girls_club", "girls_uil","coed_club", "coed_uil", "NA" ),
-         sep = ",")
+Baseball_final <- Baseball %>% mutate(entity_id = Baseball$campus_number) %>%
+  separate_rows(baseball, sep=",") %>%
+  mutate(baseball = ifelse(is.na(baseball),0,baseball)) %>%
+  count(ind, baseball) %>%
+  spread(baseball, n, fill = 0) %>%
+  select(-2) %>% as.data.frame()
 
-
-
+Baseball_final <- Baseball %>% 
+  separate(Baseball$baseball, c("boys_club", "boys_uil", "girls_club", "girls_uil", "coed_club",  "coed_uil", "NA"), extra = "drop", fill = "right")
+    
+  
 
 
 ```
