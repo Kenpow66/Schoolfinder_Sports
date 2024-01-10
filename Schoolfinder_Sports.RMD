@@ -34,11 +34,13 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 
 library(tidyverse)
 ?pivot_longer
-##Load csv and create a dataframe
+##Load csv and create a dataframe and add leading zeros to campus number
 
-Sports <- read.csv('2023-1221_SchoolFinder_CER_Sports.csv', stringsAsFactors = FALSE, header = TRUE)
-Sports$campus_number <- as.character(Sports$campus_number)
+Sports <- read.csv('2023-1221_SchoolFinder_CER_Sports.csv', stringsAsFactors = FALSE, header = TRUE) %>%
+  mutate(campus_number = sprintf("%03d", campus_number))
+```
 
+```{r}
 ## Subset of data file
 
 Baseball <- Sports[, c("campus_number", "baseball")]
