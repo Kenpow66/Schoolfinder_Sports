@@ -29,7 +29,7 @@ plot(pressure)
 
 Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
 
-```{r}
+```{r Read in Sports File}
 ##Load tidyverse**
 
 library(tidyverse)
@@ -40,7 +40,7 @@ Sports <- read.csv('2023-1221_SchoolFinder_CER_Sports.csv', stringsAsFactors = F
   mutate(campus_number = sprintf("%03d", campus_number))
 ```
 
-```{r}
+```{r Baseball}
 ## Subset of data file
 
 Baseball <- Sports[, c("campus_number", "baseball")]
@@ -83,6 +83,49 @@ write_xlsx(Baseball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_
 
 ```
 
+```{r Basketball}
+## Subset of data file
+library(tidyverse)
+
+Basketball <- Sports[, c("campus_number", "basketball")]
+
+class(Basketball$basketball)
+####
+
+Basketball <- Basketball %>%
+  mutate(basketball = str_replace_all(basketball, c("1" = "club-sports_basketball-boys", "2" = "uil-sports_basketball-boys", "3" = "club-sports_basketball-girls", "4" = "uil-sports_basketball-girls", "5" = "club-sports_basketball-coed", "6" = "uil-sports_basketball-coed", "-99" = "NA")))
+  
+
+Basketball_final <- Basketball %>% mutate(ind = Basketball$campus_number) %>%
+  separate_rows(basketball, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Basketball_final)[1] <- "entity_id"
+
+
+Basketball_final[c('type', 'value')] <- str_split_fixed(Basketball_final$basketball, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Basketball_final <-filter(Basketball_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Basketball_final$basketball <- NULL
+
+Basketball_final$ind <- NULL
+
+### install and load writexl package
+install.packages('writexl')
+library(writexl)
+
+write_xlsx(Basketball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Basketball_final.xlsx')
+
+
+```
 
 
 
