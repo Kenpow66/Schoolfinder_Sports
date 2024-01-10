@@ -72,10 +72,11 @@ Baseball_final$baseball <- NULL
 
 Baseball_final$ind <- NULL
 
+### install and load writexl package
+install.packages('writexl')
+library(writexl)
 
-### export dataframe to excel
-
-### write(Baseball_final, "baseball.csv", row.names = FALSE)
+write_xlsx(Baseball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Baseball_final.xlsx')
 
 
 ```
