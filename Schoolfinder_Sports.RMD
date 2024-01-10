@@ -257,6 +257,140 @@ write_xlsx(Football_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_
 
 ```
 
+```{r Golf}
+## Subset of data file
+library(tidyverse)
+
+Golf <- Sports[, c("campus_number", "golf")]
+
+class(Golf$golf)
+####
+
+Golf <- Golf %>%
+  mutate(golf = str_replace_all(golf, c("1" = "club-sports_golf-boys", "2" = "uil-sports_golf-boys", "3" = "club-sports_golf-girls", "4" = "uil-sports_golf-girls", "5" = "club-sports_golf-coed", "6" = "uil-sports_golf-coed", "-99" = "NA")))
+  
+
+Golf_final <- Golf %>% mutate(ind = Golf$campus_number) %>%
+  separate_rows(golf, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Golf_final)[1] <- "entity_id"
+
+
+Golf_final[c('type', 'value')] <- str_split_fixed(Golf_final$golf, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Golf_final <-filter(Golf_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Golf_final$golf <- NULL
+
+Golf_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Golf_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Golf_final.xlsx')
+
+```
+
+```{r Soccer}
+## Subset of data file
+library(tidyverse)
+
+Soccer <- Sports[, c("campus_number", "soccer")]
+
+##
+
+Soccer <- Soccer %>%
+  mutate(soccer = str_replace_all(soccer, c("1" = "club-sports_soccer-boys", "2" = "uil-sports_soccer-boys", "3" = "club-sports_soccer-girls", "4" = "uil-sports_soccer-girls", "5" = "club-sports_soccer-coed", "6" = "uil-sports_soccer-coed", "-99" = "NA")))
+  
+
+Soccer_final <- Soccer %>% mutate(ind = Soccer$campus_number) %>%
+  separate_rows(soccer, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Soccer_final)[1] <- "entity_id"
+
+
+Soccer_final[c('type', 'value')] <- str_split_fixed(Soccer_final$soccer, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Soccer_final <-filter(Soccer_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Soccer_final$soccer <- NULL
+
+Soccer_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Soccer_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Soccer_final.xlsx')
+
+```
+
+```{r Softball}
+## Subset of data file
+library(tidyverse)
+
+Softball <- Sports[, c("campus_number", "softball")]
+
+##
+
+Softball <- Softball %>%
+  mutate(softball = str_replace_all(softball, c("1" = "club-sports_softball-boys", "2" = "uil-sports_softball-boys", "3" = "club-sports_softball-girls", "4" = "uil-sports_softball-girls", "5" = "club-sports_softball-coed", "6" = "uil-sports_softball-coed", "-99" = "NA")))
+  
+
+Softball_final <- Softball %>% mutate(ind = Softball$campus_number) %>%
+  separate_rows(softball, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Softball_final)[1] <- "entity_id"
+
+
+Softball_final[c('type', 'value')] <- str_split_fixed(Softball_final$softball, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Softball_final <-filter(Softball_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Softball_final$softball <- NULL
+
+Softball_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Softball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Softball_final.xlsx')
+
+```
+
+
+
+
+
+
+
+
 
 
 
