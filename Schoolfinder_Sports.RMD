@@ -80,7 +80,7 @@ library(writexl)
 
 write_xlsx(Baseball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Baseball_final.xlsx')
 
-
+write.xlsx(Baseball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Baseball_final.xlsx')
 ```
 
 ```{r Basketball}
@@ -1242,6 +1242,8 @@ library(writexl)
 
 write_xlsx(All_Sports, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\All_Sports.xlsx')
 
+
+write.csv(All_Sports, "R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\All_Sports_final.csv", row.names=FALSE)
 ```
 
 
