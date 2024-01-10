@@ -33,7 +33,7 @@ Note that the `echo = FALSE` parameter was added to the code chunk to prevent pr
 ##Load tidyverse**
 
 library(tidyverse)
-?pivot_longer
+
 ##Load csv and create a dataframe and add leading zeros to campus number
 
 Sports <- read.csv('2023-1221_SchoolFinder_CER_Sports.csv', stringsAsFactors = FALSE, header = TRUE) %>%
@@ -45,11 +45,11 @@ Sports <- read.csv('2023-1221_SchoolFinder_CER_Sports.csv', stringsAsFactors = F
 
 Baseball <- Sports[, c("campus_number", "baseball")]
 
-class(Baseball$baseball)
+class(Baseball$Baseball)
 ####
 
 Baseball <- Baseball %>%
-  mutate(baseball = str_replace_all(baseball, c("1" = "club-sports_baseball-boys", "2" = "uil-sports_baseball-boys", "3" = "club-sports_baseball-girls", "4" = "uil-sports_baseball-girls", "5" = "club-sports_baseball-coed", "6" = "uil-sports_baseball-coed", "-99" = "NA")))
+  mutate(baseball = str_replace_all(baseball, c("1" = "club-sports_Baseball-Boys", "2" = "uil-sports_Baseball-Boys", "3" = "club-sports_Baseball-Girls", "4" = "uil-sports_Baseball-Girls", "5" = "club-sports_Baseball-Coed", "6" = "uil-sports_Baseball-Coed", "-99" = "NA")))
   
 
 Baseball_final <- Baseball %>% mutate(ind = Baseball$campus_number) %>%
@@ -93,7 +93,7 @@ class(Basketball$basketball)
 ####
 
 Basketball <- Basketball %>%
-  mutate(basketball = str_replace_all(basketball, c("1" = "club-sports_basketball-boys", "2" = "uil-sports_basketball-boys", "3" = "club-sports_basketball-girls", "4" = "uil-sports_basketball-girls", "5" = "club-sports_basketball-coed", "6" = "uil-sports_basketball-coed", "-99" = "NA")))
+  mutate(basketball = str_replace_all(basketball, c("1" = "club-sports_Basketball-Boys", "2" = "uil-sports_Basketball-Boys", "3" = "club-sports_Basketball-Girls", "4" = "uil-sports_Basketball-Girls", "5" = "club-sports_Basketball-Coed", "6" = "uil-sports_Basketball-Coed", "-99" = "NA")))
   
 
 Basketball_final <- Basketball %>% mutate(ind = Basketball$campus_number) %>%
@@ -119,7 +119,7 @@ Basketball_final$basketball <- NULL
 Basketball_final$ind <- NULL
 
 ### install and load writexl package
-install.packages('writexl')
+
 library(writexl)
 
 write_xlsx(Basketball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Basketball_final.xlsx')
@@ -137,7 +137,7 @@ class(Cheer_drill$cheer_drill)
 ####
 
 Cheer_drill <- Cheer_drill %>%
-  mutate(cheer_drill = str_replace_all(cheer_drill, c("1" = "club-sports_cheer_drill-boys", "2" = "uil-sports_cheer_drill-boys", "3" = "club-sports_cheer_drill-girls", "4" = "uil-sports_cheer_drill-girls", "5" = "club-sports_cheer_drill-coed", "6" = "uil-sports_cheer_drill-coed", "-99" = "NA")))
+  mutate(cheer_drill = str_replace_all(cheer_drill, c("1" = "club-sports_Cheer/Drill Team-Boys", "2" = "uil-sports_Cheer/Drill Team-Boys", "3" = "club-sports_Cheer/Drill Team-Girls", "4" = "uil-sports_Cheer/Drill Team-Girls", "5" = "club-sports_Cheer/Drill Team-Coed", "6" = "uil-sports_Cheer/Drill Team-Coed", "-99" = "NA")))
   
 
 Cheer_drill_final <- Cheer_drill %>% mutate(ind = Cheer_drill$campus_number) %>%
@@ -180,7 +180,7 @@ class(Cross_country$cross_country)
 ####
 
 Cross_country <- Cross_country %>%
-  mutate(cross_country = str_replace_all(cross_country, c("1" = "club-sports_cross_country-boys", "2" = "uil-sports_cross_country-boys", "3" = "club-sports_cross_country-girls", "4" = "uil-sports_cross_country-girls", "5" = "club-sports_cross_country-coed", "6" = "uil-sports_cross_country-coed", "-99" = "NA")))
+  mutate(cross_country = str_replace_all(cross_country, c("1" = "club-sports_Cross-Country-Boys", "2" = "uil-sports_Cross-Country-Boys", "3" = "club-sports_Cross-Country-Girls", "4" = "uil-sports_Cross-Country-Girls", "5" = "club-sports_Cross-Country-Coed", "6" = "uil-sports_Cross-Country-Coed", "-99" = "NA")))
   
 
 Cross_country_final <- Cross_country %>% mutate(ind = Cross_country$campus_number) %>%
@@ -223,7 +223,7 @@ class(Football$football)
 ####
 
 Football <- Football %>%
-  mutate(football = str_replace_all(football, c("1" = "club-sports_football-boys", "2" = "uil-sports_football-boys", "3" = "club-sports_football-girls", "4" = "uil-sports_football-girls", "5" = "club-sports_football-coed", "6" = "uil-sports_football-coed", "-99" = "NA")))
+  mutate(football = str_replace_all(football, c("1" = "club-sports_Football-Boys", "2" = "uil-sports_Football-Boys", "3" = "club-sports_Football-Girls", "4" = "uil-sports_Football-Girls", "5" = "club-sports_Football-Coed", "6" = "uil-sports_Football-Coed", "-99" = "NA")))
   
 
 Football_final <- Football %>% mutate(ind = Football$campus_number) %>%
@@ -266,7 +266,7 @@ class(Golf$golf)
 ####
 
 Golf <- Golf %>%
-  mutate(golf = str_replace_all(golf, c("1" = "club-sports_golf-boys", "2" = "uil-sports_golf-boys", "3" = "club-sports_golf-girls", "4" = "uil-sports_golf-girls", "5" = "club-sports_golf-coed", "6" = "uil-sports_golf-coed", "-99" = "NA")))
+  mutate(golf = str_replace_all(golf, c("1" = "club-sports_Golf-Boys", "2" = "uil-sports_Golf-Boys", "3" = "club-sports_Golf-Girls", "4" = "uil-sports_Golf-Girls", "5" = "club-sports_Golf-Coed", "6" = "uil-sports_Golf-Coed", "-99" = "NA")))
   
 
 Golf_final <- Golf %>% mutate(ind = Golf$campus_number) %>%
@@ -308,7 +308,7 @@ Soccer <- Sports[, c("campus_number", "soccer")]
 ##
 
 Soccer <- Soccer %>%
-  mutate(soccer = str_replace_all(soccer, c("1" = "club-sports_soccer-boys", "2" = "uil-sports_soccer-boys", "3" = "club-sports_soccer-girls", "4" = "uil-sports_soccer-girls", "5" = "club-sports_soccer-coed", "6" = "uil-sports_soccer-coed", "-99" = "NA")))
+  mutate(soccer = str_replace_all(soccer, c("1" = "club-sports_Soccer-Boys", "2" = "uil-sports_Soccer-Boys", "3" = "club-sports_Soccer-Girls", "4" = "uil-sports_Soccer-Girls", "5" = "club-sports_Soccer-Coed", "6" = "uil-sports_Soccer-Coed", "-99" = "NA")))
   
 
 Soccer_final <- Soccer %>% mutate(ind = Soccer$campus_number) %>%
@@ -350,7 +350,7 @@ Softball <- Sports[, c("campus_number", "softball")]
 ##
 
 Softball <- Softball %>%
-  mutate(softball = str_replace_all(softball, c("1" = "club-sports_softball-boys", "2" = "uil-sports_softball-boys", "3" = "club-sports_softball-girls", "4" = "uil-sports_softball-girls", "5" = "club-sports_softball-coed", "6" = "uil-sports_softball-coed", "-99" = "NA")))
+  mutate(softball = str_replace_all(softball, c("1" = "club-sports_Softball-Boys", "2" = "uil-sports_Softball-Boys", "3" = "club-sports_Softball-Girls", "4" = "uil-sports_Softball-Girls", "5" = "club-sports_Softball-Coed", "6" = "uil-sports_Softball-Coed", "-99" = "NA")))
   
 
 Softball_final <- Softball %>% mutate(ind = Softball$campus_number) %>%
@@ -392,7 +392,7 @@ Swim <- Sports[, c("campus_number", "swim")]
 ##
 
 Swim <- Swim %>%
-  mutate(swim = str_replace_all(swim, c("1" = "club-sports_swim-boys", "2" = "uil-sports_swim-boys", "3" = "club-sports_swim-girls", "4" = "uil-sports_swim-girls", "5" = "club-sports_swim-coed", "6" = "uil-sports_swim-coed", "-99" = "NA")))
+  mutate(swim = str_replace_all(swim, c("1" = "club-sports_Swim-Boys", "2" = "uil-sports_Swim-Boys", "3" = "club-sports_Swim-Girls", "4" = "uil-sports_Swim-Girls", "5" = "club-sports_Swim-Coed", "6" = "uil-sports_Swim-Coed", "-99" = "NA")))
   
 
 Swim_final <- Swim %>% mutate(ind = Swim$campus_number) %>%
@@ -434,7 +434,7 @@ Team_tennis <- Sports[, c("campus_number", "team_tennis")]
 ##
 
 Team_tennis <- Team_tennis %>%
-  mutate(team_tennis = str_replace_all(team_tennis, c("1" = "club-sports_team_tennis-boys", "2" = "uil-sports_team_tennis-boys", "3" = "club-sports_team_tennis-girls", "4" = "uil-sports_team_tennis-girls", "5" = "club-sports_team_tennis-coed", "6" = "uil-sports_team_tennis-coed", "-99" = "NA")))
+  mutate(team_tennis = str_replace_all(team_tennis, c("1" = "club-sports_Team Tennis-Boys", "2" = "uil-sports_Team Tennis-Boys", "3" = "club-sports_Team Tennis-Girls", "4" = "uil-sports_Team Tennis-Girls", "5" = "club-sports_Team Tennis-Coed", "6" = "uil-sports_Team Tennis-Coed", "-99" = "NA")))
   
 
 Team_tennis_final <- Team_tennis %>% mutate(ind = Team_tennis$campus_number) %>%
@@ -476,7 +476,7 @@ Tennis <- Sports[, c("campus_number", "tennis")]
 ##
 
 Tennis <- Tennis %>%
-  mutate(tennis = str_replace_all(tennis, c("1" = "club-sports_tennis-boys", "2" = "uil-sports_tennis-boys", "3" = "club-sports_tennis-girls", "4" = "uil-sports_tennis-girls", "5" = "club-sports_tennis-coed", "6" = "uil-sports_tennis-coed", "-99" = "NA")))
+  mutate(tennis = str_replace_all(tennis, c("1" = "club-sports_Tennis-Boys", "2" = "uil-sports_Tennis-Boys", "3" = "club-sports_Tennis-Girls", "4" = "uil-sports_Tennis-Girls", "5" = "club-sports_Tennis-Coed", "6" = "uil-sports_Tennis-Coed", "-99" = "NA")))
   
 
 Tennis_final <- Tennis %>% mutate(ind = Tennis$campus_number) %>%
@@ -518,7 +518,7 @@ Track <- Sports[, c("campus_number", "track")]
 ##
 
 Track <- Track %>%
-  mutate(track = str_replace_all(track, c("1" = "club-sports_track-boys", "2" = "uil-sports_track-boys", "3" = "club-sports_track-girls", "4" = "uil-sports_track-girls", "5" = "club-sports_track-coed", "6" = "uil-sports_track-coed", "-99" = "NA")))
+  mutate(track = str_replace_all(track, c("1" = "club-sports_Track /Field-Boys", "2" = "uil-sports_Track /Field-Boys", "3" = "club-sports_Track /Field-Girls", "4" = "uil-sports_Track /Field-Girls", "5" = "club-sports_Track /Field-Coed", "6" = "uil-sports_Track /Field-Coed", "-99" = "NA")))
   
 
 Track_final <- Track %>% mutate(ind = Track$campus_number) %>%
@@ -560,7 +560,7 @@ Volleyball <- Sports[, c("campus_number", "volley")]
 ##
 
 Volleyball <- Volleyball %>%
-  mutate(volley = str_replace_all(volley, c("1" = "club-sports_volleyball-boys", "2" = "uil-sports_volleyball-boys", "3" = "club-sports_volleyball-girls", "4" = "uil-sports_volleyball-girls", "5" = "club-sports_volleyball-coed", "6" = "uil-sports_volleyball-coed", "-99" = "NA")))
+  mutate(volley = str_replace_all(volley, c("1" = "club-sports_Volleyball-Boys", "2" = "uil-sports_Volleyball-Boys", "3" = "club-sports_Volleyball-Girls", "4" = "uil-sports_Volleyball-Girls", "5" = "club-sports_Volleyball-Coed", "6" = "uil-sports_Volleyball-Coed", "-99" = "NA")))
   
 
 Volleyball_final <- Volleyball %>% mutate(ind = Volleyball$campus_number) %>%
@@ -602,7 +602,7 @@ Water_polo <- Sports[, c("campus_number", "water_polo")]
 ##
 
 Water_polo <- Water_polo %>%
-  mutate(water_polo = str_replace_all(water_polo, c("1" = "club-sports_water-polo-boys", "2" = "uil-sports_water-polo-boys", "3" = "club-sports_water-polo-girls", "4" = "uil-sports_water-polo-girls", "5" = "club-sports_water-polo-coed", "6" = "uil-sports_water-polo-coed", "-99" = "NA")))
+  mutate(water_polo = str_replace_all(water_polo, c("1" = "club-sports_Water Polo-Boys", "2" = "uil-sports_Water Polo-Boys", "3" = "club-sports_Water Polo-Girls", "4" = "uil-sports_Water Polo-Girls", "5" = "club-sports_Water Polo-Coed", "6" = "uil-sports_Water Polo-Coed", "-99" = "NA")))
   
 
 Water_polo_final <- Water_polo %>% mutate(ind = Water_polo$campus_number) %>%
@@ -644,7 +644,7 @@ Wrestling <- Sports[, c("campus_number", "wrestling")]
 ##
 
 Wrestling <- Wrestling %>%
-  mutate(wrestling = str_replace_all(wrestling, c("1" = "club-sports_wrestling-boys", "2" = "uil-sports_wrestling-boys", "3" = "club-sports_wrestling-girls", "4" = "uil-sports_wrestling-girls", "5" = "club-sports_wrestling-coed", "6" = "uil-sports_wrestling-coed", "-99" = "NA")))
+  mutate(wrestling = str_replace_all(wrestling, c("1" = "club-sports_Wrestling-Boys", "2" = "uil-sports_Wrestling-Boys", "3" = "club-sports_Wrestling-Girls", "4" = "uil-sports_Wrestling-Girls", "5" = "club-sports_Wrestling-Coed", "6" = "uil-sports_Wrestling-Coed", "-99" = "NA")))
   
 
 Wrestling_final <- Wrestling %>% mutate(ind = Wrestling$campus_number) %>%
@@ -686,7 +686,7 @@ Archery <- Sports[, c("campus_number", "archery")]
 ##
 
 Archery <- Archery %>%
-  mutate(archery = str_replace_all(archery, c("1" = "club-sports_archery-boys",  "2" = "club-sports_archery-girls", "3" = "club-sports_archery-coed", "-99" = "NA")))
+  mutate(archery = str_replace_all(archery, c("1" = "club-sports_Archery-Boys",  "2" = "club-sports_Archery-Girls", "3" = "club-sports_Archery-Coed", "-99" = "NA")))
   
 
 Archery_final <- Archery %>% mutate(ind = Archery$campus_number) %>%
@@ -728,7 +728,7 @@ Bowling <- Sports[, c("campus_number", "bowling")]
 ##
 
 Bowling <- Bowling %>%
-  mutate(bowling = str_replace_all(bowling, c("1" = "club-sports_bowling-boys",  "2" = "club-sports_bowling-girls", "3" = "club-sports_bowling-coed", "-99" = "NA")))
+  mutate(bowling = str_replace_all(bowling, c("1" = "club-sports_Bowling-Boys",  "2" = "club-sports_Bowling-Girls", "3" = "club-sports_Bowling-Coed", "-99" = "NA")))
   
 
 Bowling_final <- Bowling %>% mutate(ind = Bowling$campus_number) %>%
@@ -770,7 +770,7 @@ Capoiera <- Sports[, c("campus_number", "capoiera")]
 ##
 
 Capoiera <- Capoiera %>%
-  mutate(capoiera = str_replace_all(capoiera, c("1" = "club-sports_capoiera-boys",  "2" = "club-sports_capoiera-girls", "3" = "club-sports_capoiera-coed", "-99" = "NA")))
+  mutate(capoiera = str_replace_all(capoiera, c("1" = "club-sports_Capoiera-Boys",  "2" = "club-sports_Capoiera-Girls", "3" = "club-sports_Capoiera-Coed", "-99" = "NA")))
   
 
 Capoiera_final <- Capoiera %>% mutate(ind = Capoiera$campus_number) %>%
@@ -812,7 +812,7 @@ Disc_golf <- Sports[, c("campus_number", "disc_golf")]
 ##
 
 Disc_golf <- Disc_golf %>%
-  mutate(disc_golf = str_replace_all(disc_golf, c("1" = "club-sports_disc_golf-boys",  "2" = "club-sports_disc_golf-girls", "3" = "club-sports_disc_golf-coed", "-99" = "NA")))
+  mutate(disc_golf = str_replace_all(disc_golf, c("1" = "club-sports_Disc Golf-Boys",  "2" = "club-sports_Disc Golf-Girls", "3" = "club-sports_Disc Golf-Coed", "-99" = "NA")))
   
 
 Disc_golf_final <- Disc_golf %>% mutate(ind = Disc_golf$campus_number) %>%
@@ -845,8 +845,428 @@ write_xlsx(Disc_golf_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder
 
 ```
 
+```{r Flag_football}
+## Subset of data file
+library(tidyverse)
+
+Flag_football <- Sports[, c("campus_number", "flag_football")]
+
+##
+
+Flag_football <- Flag_football %>%
+  mutate(flag_football = str_replace_all(flag_football, c("1" = "club-sports_Flag Football-Boys",  "2" = "club-sports_Flag Football-Girls", "3" = "club-sports_Flag Football-Coed", "-99" = "NA")))
+  
+
+Flag_football_final <- Flag_football %>% mutate(ind = Flag_football$campus_number) %>%
+  separate_rows(flag_football, sep=",") 
 
 
+### rename column 1 to "entitiy_id"
+
+names(Flag_football_final)[1] <- "entity_id"
+
+
+Flag_football_final[c('type', 'value')] <- str_split_fixed(Flag_football_final$flag_football, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Flag_football_final <-filter(Flag_football_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Flag_football_final$flag_football <- NULL
+
+Flag_football_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Flag_football_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Flag_football_final.xlsx')
+
+```
+
+```{r Disc_golf}
+## Subset of data file
+library(tidyverse)
+
+Disc_golf <- Sports[, c("campus_number", "disc_golf")]
+
+##
+
+Disc_golf <- Disc_golf %>%
+  mutate(disc_golf = str_replace_all(disc_golf, c("1" = "club-sports_disc_golf-Boys",  "2" = "club-sports_disc_golf-Girls", "3" = "club-sports_disc_golf-Coed", "-99" = "NA")))
+  
+
+Disc_golf_final <- Disc_golf %>% mutate(ind = Disc_golf$campus_number) %>%
+  separate_rows(disc_golf, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Disc_golf_final)[1] <- "entity_id"
+
+
+Disc_golf_final[c('type', 'value')] <- str_split_fixed(Disc_golf_final$disc_golf, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Disc_golf_final <-filter(Disc_golf_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Disc_golf_final$disc_golf <- NULL
+
+Disc_golf_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Disc_golf_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Disc_golf_final.xlsx')
+
+```
+
+```{r Fun_fit}
+## Subset of data file
+library(tidyverse)
+
+Fun_fit <- Sports[, c("campus_number", "fun_fit")]
+
+##
+
+Fun_fit <- Fun_fit %>%
+  mutate(fun_fit = str_replace_all(fun_fit, c("1" = "club-sports_Fun Fit-Boys",  "2" = "club-sports_Fun Fit-Girls", "3" = "club-sports_Fun Fit-Coed", "-99" = "NA")))
+  
+
+Fun_fit_final <- Fun_fit %>% mutate(ind = Fun_fit$campus_number) %>%
+  separate_rows(fun_fit, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Fun_fit_final)[1] <- "entity_id"
+
+
+Fun_fit_final[c('type', 'value')] <- str_split_fixed(Fun_fit_final$fun_fit, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Fun_fit_final <-filter(Fun_fit_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Fun_fit_final$fun_fit <- NULL
+
+Fun_fit_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Fun_fit_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Fun_fit_final.xlsx')
+
+```
+
+```{r Gymnastics}
+## Subset of data file
+library(tidyverse)
+
+Gymnastics <- Sports[, c("campus_number", "gymnastics")]
+
+##
+
+Gymnastics <- Gymnastics %>%
+  mutate(gymnastics = str_replace_all(gymnastics, c("1" = "club-sports_Gymnastics-Boys",  "2" = "club-sports_Gymnastics-Girls", "3" = "club-sports_Gymnastics-Coed", "-99" = "NA")))
+  
+
+Gymnastics_final <- Gymnastics %>% mutate(ind = Gymnastics$campus_number) %>%
+  separate_rows(gymnastics, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Gymnastics_final)[1] <- "entity_id"
+
+
+Gymnastics_final[c('type', 'value')] <- str_split_fixed(Gymnastics_final$gymnastics, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Gymnastics_final <-filter(Gymnastics_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Gymnastics_final$gymnastics <- NULL
+
+Gymnastics_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Gymnastics_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Gymnastics_final.xlsx')
+
+```
+
+```{r Karate}
+## Subset of data file
+library(tidyverse)
+
+Karate <- Sports[, c("campus_number", "karate")]
+
+##
+
+Karate <- Karate %>%
+  mutate(karate = str_replace_all(karate, c("1" = "club-sports_Karate-Boys",  "2" = "club-sports_Karate-Girls", "3" = "club-sports_Karate-Coed", "-99" = "NA")))
+  
+
+Karate_final <- Karate %>% mutate(ind = Karate$campus_number) %>%
+  separate_rows(karate, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Karate_final)[1] <- "entity_id"
+
+
+Karate_final[c('type', 'value')] <- str_split_fixed(Karate_final$karate, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Karate_final <-filter(Karate_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Karate_final$karate <- NULL
+
+Karate_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Karate_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Karate_final.xlsx')
+
+```
+
+```{r Lacrosse}
+## Subset of data file
+library(tidyverse)
+
+Lacrosse <- Sports[, c("campus_number", "lacrosse")]
+
+##
+
+Lacrosse <- Lacrosse %>%
+  mutate(lacrosse = str_replace_all(lacrosse, c("1" = "club-sports_Lacrosse-Boys",  "2" = "club-sports_Lacrosse-Girls", "3" = "club-sports_Lacrosse-Coed", "-99" = "NA")))
+  
+
+Lacrosse_final <- Lacrosse %>% mutate(ind = Lacrosse$campus_number) %>%
+  separate_rows(lacrosse, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Lacrosse_final)[1] <- "entity_id"
+
+
+Lacrosse_final[c('type', 'value')] <- str_split_fixed(Lacrosse_final$lacrosse, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Lacrosse_final <-filter(Lacrosse_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Lacrosse_final$lacrosse <- NULL
+
+Lacrosse_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Lacrosse_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Lacrosse_final.xlsx')
+
+```
+
+```{r Running}
+## Subset of data file
+library(tidyverse)
+
+Running <- Sports[, c("campus_number", "running")]
+
+##
+
+Running <- Running %>%
+  mutate(running = str_replace_all(running, c("1" = "club-sports_Running-Boys",  "2" = "club-sports_Running-Girls", "3" = "club-sports_Running-Coed", "-99" = "NA")))
+  
+
+Running_final <- Running %>% mutate(ind = Running$campus_number) %>%
+  separate_rows(running, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Running_final)[1] <- "entity_id"
+
+
+Running_final[c('type', 'value')] <- str_split_fixed(Running_final$running, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Running_final <-filter(Running_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Running_final$running <- NULL
+
+Running_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Running_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Running_final.xlsx')
+
+```
+
+```{r Squash}
+## Subset of data file
+library(tidyverse)
+
+Squash <- Sports[, c("campus_number", "squash")]
+
+##
+
+Squash <- Squash %>%
+  mutate(squash = str_replace_all(squash, c("1" = "club-sports_Squash-Boys",  "2" = "club-sports_Squash-Girls", "3" = "club-sports_Squash-Coed", "-99" = "NA")))
+  
+
+Squash_final <- Squash %>% mutate(ind = Squash$campus_number) %>%
+  separate_rows(squash, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Squash_final)[1] <- "entity_id"
+
+
+Squash_final[c('type', 'value')] <- str_split_fixed(Squash_final$squash, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Squash_final <-filter(Squash_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Squash_final$squash <- NULL
+
+Squash_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Squash_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Squash_final.xlsx')
+
+```
+
+```{r Strength}
+## Subset of data file
+library(tidyverse)
+
+Strength <- Sports[, c("campus_number", "strength")]
+
+##
+
+Strength <- Strength %>%
+  mutate(strength = str_replace_all(strength, c("1" = "club-sports_Strength-Boys",  "2" = "club-sports_Strength-Girls", "3" = "club-sports_Strength-Coed", "-99" = "NA")))
+  
+
+Strength_final <- Strength %>% mutate(ind = Strength$campus_number) %>%
+  separate_rows(strength, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Strength_final)[1] <- "entity_id"
+
+
+Strength_final[c('type', 'value')] <- str_split_fixed(Strength_final$strength, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Strength_final <-filter(Strength_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Strength_final$strength <- NULL
+
+Strength_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Strength_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Strength_final.xlsx')
+
+```
+
+```{r Yoga}
+## Subset of data file
+library(tidyverse)
+
+Yoga <- Sports[, c("campus_number", "yoga")]
+
+##
+
+Yoga <- Yoga %>%
+  mutate(yoga = str_replace_all(yoga, c("1" = "club-sports_Yoga-Boys",  "2" = "club-sports_Yoga-Girls", "3" = "club-sports_Yoga-Coed", "-99" = "NA")))
+  
+
+Yoga_final <- Yoga %>% mutate(ind = Yoga$campus_number) %>%
+  separate_rows(yoga, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Yoga_final)[1] <- "entity_id"
+
+
+Yoga_final[c('type', 'value')] <- str_split_fixed(Yoga_final$yoga, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Yoga_final <-filter(Yoga_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Yoga_final$yoga <- NULL
+
+Yoga_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Yoga_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Yoga_final.xlsx')
+
+```
+
+
+```{r All dataframes Union into one File}
 
 
 
