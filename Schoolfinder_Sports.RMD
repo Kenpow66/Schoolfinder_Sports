@@ -127,7 +127,6 @@ write_xlsx(Basketball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinde
 
 ```
 
-
 ```{r Cheer_Drill}
 ## Subset of data file
 library(tidyverse)
@@ -552,7 +551,6 @@ write_xlsx(Track_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Spo
 
 ```
 
-
 ```{r Volleyball}
 ## Subset of data file
 library(tidyverse)
@@ -595,9 +593,89 @@ write_xlsx(Volleyball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinde
 
 ```
 
+```{r Water_polo}
+## Subset of data file
+library(tidyverse)
+
+Water_polo <- Sports[, c("campus_number", "water_polo")]
+
+##
+
+Water_polo <- Water_polo %>%
+  mutate(water_polo = str_replace_all(water_polo, c("1" = "club-sports_water-polo-boys", "2" = "uil-sports_water-polo-boys", "3" = "club-sports_water-polo-girls", "4" = "uil-sports_water-polo-girls", "5" = "club-sports_water-polo-coed", "6" = "uil-sports_water-polo-coed", "-99" = "NA")))
+  
+
+Water_polo_final <- Water_polo %>% mutate(ind = Water_polo$campus_number) %>%
+  separate_rows(water_polo, sep=",") 
 
 
+### rename column 1 to "entitiy_id"
 
+names(Water_polo_final)[1] <- "entity_id"
+
+
+Water_polo_final[c('type', 'value')] <- str_split_fixed(Water_polo_final$water_polo, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Water_polo_final <-filter(Water_polo_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Water_polo_final$water_polo <- NULL
+
+Water_polo_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Water_polo_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Water_polo_final.xlsx')
+
+```
+
+```{r Wrestling}
+## Subset of data file
+library(tidyverse)
+
+Wrestling <- Sports[, c("campus_number", "wrestling")]
+
+##
+
+Wrestling <- Wrestling %>%
+  mutate(wrestling = str_replace_all(wrestling, c("1" = "club-sports_wrestling-boys", "2" = "uil-sports_wrestling-boys", "3" = "club-sports_wrestling-girls", "4" = "uil-sports_wrestling-girls", "5" = "club-sports_wrestling-coed", "6" = "uil-sports_wrestling-coed", "-99" = "NA")))
+  
+
+Wrestling_final <- Wrestling %>% mutate(ind = Wrestling$campus_number) %>%
+  separate_rows(wrestling, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Wrestling_final)[1] <- "entity_id"
+
+
+Wrestling_final[c('type', 'value')] <- str_split_fixed(Wrestling_final$wrestling, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Wrestling_final <-filter(Wrestling_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Wrestling_final$wrestling <- NULL
+
+Wrestling_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Wrestling_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Wrestling_final.xlsx')
+
+```
 
 
 
