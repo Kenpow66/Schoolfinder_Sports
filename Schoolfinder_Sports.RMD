@@ -677,6 +677,191 @@ write_xlsx(Wrestling_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder
 
 ```
 
+```{r Archery}
+## Subset of data file
+library(tidyverse)
+
+Archery <- Sports[, c("campus_number", "archery")]
+
+##
+
+Archery <- Archery %>%
+  mutate(archery = str_replace_all(archery, c("1" = "club-sports_archery-boys",  "2" = "club-sports_archery-girls", "3" = "club-sports_archery-coed", "-99" = "NA")))
+  
+
+Archery_final <- Archery %>% mutate(ind = Archery$campus_number) %>%
+  separate_rows(archery, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Archery_final)[1] <- "entity_id"
+
+
+Archery_final[c('type', 'value')] <- str_split_fixed(Archery_final$archery, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Archery_final <-filter(Archery_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Archery_final$archery <- NULL
+
+Archery_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Archery_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Archery_final.xlsx')
+
+```
+
+```{r Bowling}
+## Subset of data file
+library(tidyverse)
+
+Bowling <- Sports[, c("campus_number", "bowling")]
+
+##
+
+Bowling <- Bowling %>%
+  mutate(bowling = str_replace_all(bowling, c("1" = "club-sports_bowling-boys",  "2" = "club-sports_bowling-girls", "3" = "club-sports_bowling-coed", "-99" = "NA")))
+  
+
+Bowling_final <- Bowling %>% mutate(ind = Bowling$campus_number) %>%
+  separate_rows(bowling, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Bowling_final)[1] <- "entity_id"
+
+
+Bowling_final[c('type', 'value')] <- str_split_fixed(Bowling_final$bowling, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Bowling_final <-filter(Bowling_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Bowling_final$bowling <- NULL
+
+Bowling_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Bowling_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Bowling_final.xlsx')
+
+```
+
+```{r Capoiera}
+## Subset of data file
+library(tidyverse)
+
+Capoiera <- Sports[, c("campus_number", "capoiera")]
+
+##
+
+Capoiera <- Capoiera %>%
+  mutate(capoiera = str_replace_all(capoiera, c("1" = "club-sports_capoiera-boys",  "2" = "club-sports_capoiera-girls", "3" = "club-sports_capoiera-coed", "-99" = "NA")))
+  
+
+Capoiera_final <- Capoiera %>% mutate(ind = Capoiera$campus_number) %>%
+  separate_rows(capoiera, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Capoiera_final)[1] <- "entity_id"
+
+
+Capoiera_final[c('type', 'value')] <- str_split_fixed(Capoiera_final$capoiera, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Capoiera_final <-filter(Capoiera_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Capoiera_final$capoiera <- NULL
+
+Capoiera_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Capoiera_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Capoiera_final.xlsx')
+
+```
+
+```{r Disc_golf}
+## Subset of data file
+library(tidyverse)
+
+Disc_golf <- Sports[, c("campus_number", "disc_golf")]
+
+##
+
+Disc_golf <- Disc_golf %>%
+  mutate(disc_golf = str_replace_all(disc_golf, c("1" = "club-sports_disc_golf-boys",  "2" = "club-sports_disc_golf-girls", "3" = "club-sports_disc_golf-coed", "-99" = "NA")))
+  
+
+Disc_golf_final <- Disc_golf %>% mutate(ind = Disc_golf$campus_number) %>%
+  separate_rows(disc_golf, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Disc_golf_final)[1] <- "entity_id"
+
+
+Disc_golf_final[c('type', 'value')] <- str_split_fixed(Disc_golf_final$disc_golf, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Disc_golf_final <-filter(Disc_golf_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Disc_golf_final$disc_golf <- NULL
+
+Disc_golf_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Disc_golf_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Disc_golf_final.xlsx')
+
+```
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
+
 
 
 
