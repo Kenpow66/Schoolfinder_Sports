@@ -128,11 +128,134 @@ write_xlsx(Basketball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinde
 ```
 
 
+```{r Cheer_Drill}
+## Subset of data file
+library(tidyverse)
+
+Cheer_drill <- Sports[, c("campus_number", "cheer_drill")]
+
+class(Cheer_drill$cheer_drill)
+####
+
+Cheer_drill <- Cheer_drill %>%
+  mutate(cheer_drill = str_replace_all(cheer_drill, c("1" = "club-sports_cheer_drill-boys", "2" = "uil-sports_cheer_drill-boys", "3" = "club-sports_cheer_drill-girls", "4" = "uil-sports_cheer_drill-girls", "5" = "club-sports_cheer_drill-coed", "6" = "uil-sports_cheer_drill-coed", "-99" = "NA")))
+  
+
+Cheer_drill_final <- Cheer_drill %>% mutate(ind = Cheer_drill$campus_number) %>%
+  separate_rows(cheer_drill, sep=",") 
 
 
+### rename column 1 to "entitiy_id"
+
+names(Cheer_drill_final)[1] <- "entity_id"
 
 
+Cheer_drill_final[c('type', 'value')] <- str_split_fixed(Cheer_drill_final$cheer_drill, '_', 2)
 
+### remove zeros from 'value' and NA from 'type'
+
+Cheer_drill_final <-filter(Cheer_drill_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Cheer_drill_final$cheer_drill <- NULL
+
+Cheer_drill_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Cheer_drill_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Cheer_drill_final.xlsx')
+
+```
+
+```{r Cross_country}
+## Subset of data file
+library(tidyverse)
+
+Cross_country <- Sports[, c("campus_number", "cross_country")]
+
+class(Cross_country$cross_country)
+####
+
+Cross_country <- Cross_country %>%
+  mutate(cross_country = str_replace_all(cross_country, c("1" = "club-sports_cross_country-boys", "2" = "uil-sports_cross_country-boys", "3" = "club-sports_cross_country-girls", "4" = "uil-sports_cross_country-girls", "5" = "club-sports_cross_country-coed", "6" = "uil-sports_cross_country-coed", "-99" = "NA")))
+  
+
+Cross_country_final <- Cross_country %>% mutate(ind = Cross_country$campus_number) %>%
+  separate_rows(cross_country, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Cross_country_final)[1] <- "entity_id"
+
+
+Cross_country_final[c('type', 'value')] <- str_split_fixed(Cross_country_final$cross_country, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Cross_country_final <-filter(Cross_country_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Cross_country_final$cross_country <- NULL
+
+Cross_country_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Cross_country_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Cross_country_final.xlsx')
+
+```
+
+```{r Football}
+## Subset of data file
+library(tidyverse)
+
+Football <- Sports[, c("campus_number", "football")]
+
+class(Football$football)
+####
+
+Football <- Football %>%
+  mutate(football = str_replace_all(football, c("1" = "club-sports_football-boys", "2" = "uil-sports_football-boys", "3" = "club-sports_football-girls", "4" = "uil-sports_football-girls", "5" = "club-sports_football-coed", "6" = "uil-sports_football-coed", "-99" = "NA")))
+  
+
+Football_final <- Football %>% mutate(ind = Football$campus_number) %>%
+  separate_rows(football, sep=",") 
+
+
+### rename column 1 to "entitiy_id"
+
+names(Football_final)[1] <- "entity_id"
+
+
+Football_final[c('type', 'value')] <- str_split_fixed(Football_final$football, '_', 2)
+
+### remove zeros from 'value' and NA from 'type'
+
+Football_final <-filter(Football_final, type!='NA')
+  
+
+### remove unneeded columns
+
+Football_final$football <- NULL
+
+Football_final$ind <- NULL
+
+### install and load writexl package
+
+library(writexl)
+
+write_xlsx(Football_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Football_final.xlsx')
+
+```
 
 
 
