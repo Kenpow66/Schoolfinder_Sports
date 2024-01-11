@@ -36,8 +36,11 @@ library(tidyverse)
 
 ##Load csv and create a dataframe and add leading zeros to campus number
 
-Sports <- read.csv('2023-1221_SchoolFinder_CER_Sports.csv', stringsAsFactors = FALSE, header = TRUE) %>%
+Sports <- read.csv('Sports_Native.csv', stringsAsFactors = FALSE, header = TRUE) %>%
   mutate(campus_number = sprintf("%03d", campus_number))
+
+#Create structure to include all campuses regardless of programmed offered
+  all_campuses <- Sports %>% distinct(campus_number)
 ```
 
 ```{r Baseball}
@@ -80,7 +83,7 @@ library(writexl)
 
 write_xlsx(Baseball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Baseball_final.xlsx')
 
-write.xlsx(Baseball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Baseball_final.xlsx')
+
 ```
 
 ```{r Basketball}
@@ -1232,6 +1235,20 @@ All_Sports <- rbind(Archery_final, Baseball_final, Cheer_drill_final, Cross_coun
                     Disc_golf_final, Flag_football_final, Fun_fit_final, Gymnastics_final, Karate_final, Lacrosse_final,
                     Running_final, Squash_final, Strength_final, Yoga_final)
 
+
+names(All_Sports)[1] <-"entity_id" 
+
+names(all_campuses)[1] <- "entity_id"
+
+### join with all_campuses to create final list
+All_Sports <- left_join(all_campuses, All_Sports, by = "entity_id")
+
+
+All_Sports <-All_Sports %>%
+ mutate(value = ifelse(is.na(value), "Sports Not Offered", value), 
+        type = ifelse(is.na(type), "sports", type)) 
+
+ 
 #### All_Sports$index <- 1:nrow(All_Sports)  ####
 
 ####    names(All_Sports)[4] <- "id" ####
