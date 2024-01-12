@@ -5,30 +5,6 @@ date: "`r Sys.Date()`"
 output: html_document
 ---
 
-```{r setup, include=FALSE}
-knitr::opts_chunk$set(echo = TRUE)
-```
-
-## R Markdown
-
-This is an R Markdown document. Markdown is a simple formatting syntax for authoring HTML, PDF, and MS Word documents. For more details on using R Markdown see <http://rmarkdown.rstudio.com>.
-
-When you click the **Knit** button a document will be generated that includes both content as well as the output of any embedded R code chunks within the document. You can embed an R code chunk like this:
-
-```{r cars}
-summary(cars)
-```
-
-## Including Plots
-
-You can also embed plots, for example:
-
-```{r pressure, echo=FALSE}
-plot(pressure)
-```
-
-Note that the `echo = FALSE` parameter was added to the code chunk to prevent printing of the R code that generated the plot.
-
 ```{r Read in Sports File}
 ##Load tidyverse**
 
@@ -48,7 +24,6 @@ Sports <- read.csv('Sports_Native.csv', stringsAsFactors = FALSE, header = TRUE)
 
 Baseball <- Sports[, c("campus_number", "baseball")]
 
-class(Baseball$Baseball)
 ####
 
 Baseball <- Baseball %>%
@@ -57,7 +32,6 @@ Baseball <- Baseball %>%
 
 Baseball_final <- Baseball %>% mutate(ind = Baseball$campus_number) %>%
   separate_rows(baseball, sep=",") 
-
 
 ### rename column 1 to "entitiy_id"
 
@@ -77,12 +51,6 @@ Baseball_final$baseball <- NULL
 
 Baseball_final$ind <- NULL
 
-### install and load writexl package
-install.packages('writexl')
-library(writexl)
-
-write_xlsx(Baseball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Baseball_final.xlsx')
-
 
 ```
 
@@ -92,8 +60,6 @@ library(tidyverse)
 
 Basketball <- Sports[, c("campus_number", "basketball")]
 
-class(Basketball$basketball)
-####
 
 Basketball <- Basketball %>%
   mutate(basketball = str_replace_all(basketball, c("1" = "sports_club_boys-Basketball", "2" = "sports_uil_boys-Basketball", "3" = "sports_club_girls-Basketball", "4" = "sports_uil_girls-Basketball", "5" = "sports_club_coed-Basketball", "6" = "sports_uil_coed-Basketball", "-99" = "NA")))
@@ -121,12 +87,6 @@ Basketball_final$basketball <- NULL
 
 Basketball_final$ind <- NULL
 
-### install and load writexl package
-
-library(writexl)
-
-write_xlsx(Basketball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Basketball_final.xlsx')
-
 
 ```
 
@@ -136,8 +96,6 @@ library(tidyverse)
 
 Cheer_drill <- Sports[, c("campus_number", "cheer_drill")]
 
-class(Cheer_drill$cheer_drill)
-####
 
 Cheer_drill <- Cheer_drill %>%
   mutate(cheer_drill = str_replace_all(cheer_drill, c("1" = "sports_club_boys-Cheer/Drill", "2" = "sports_uil_boys-Cheer/Drill", "3" = "sports_club_girls-Cheer/Drill", "4" = "sports_uil_girls-Cheer/Drill", "5" = "sports_club_coed-Cheer/Drill", "6" = "sports_uil_coed-Cheer/Drill", "-99" = "NA")))
@@ -167,9 +125,6 @@ Cheer_drill_final$ind <- NULL
 
 ### install and load writexl package
 
-library(writexl)
-
-write_xlsx(Cheer_drill_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Cheer_drill_final.xlsx')
 
 ```
 
@@ -179,8 +134,6 @@ library(tidyverse)
 
 Cross_country <- Sports[, c("campus_number", "cross_country")]
 
-class(Cross_country$cross_country)
-####
 
 Cross_country <- Cross_country %>%
   mutate(cross_country = str_replace_all(cross_country, c("1" = "sports_club_boys-Cross Country", "2" = "sports_uil_boys-Cross Country", "3" = "sports_club_girls-Cross Country", "4" = "sports_uil_girls-Cross Country", "5" = "sports_club_coed-Cross Country", "6" = "sports_uil_coed-Cross Country", "-99" = "NA")))
@@ -208,11 +161,6 @@ Cross_country_final$cross_country <- NULL
 
 Cross_country_final$ind <- NULL
 
-### install and load writexl package
-
-library(writexl)
-
-write_xlsx(Cross_country_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Cross_country_final.xlsx')
 
 ```
 
@@ -222,8 +170,7 @@ library(tidyverse)
 
 Football <- Sports[, c("campus_number", "football")]
 
-class(Football$football)
-####
+
 
 Football <- Football %>%
   mutate(football = str_replace_all(football, c("1" = "sports_club_boys-Football", "2" = "sports_uil_boys-Football", "3" = "sports_club_girls-Football", "4" = "sports_uil_girls-Football", "5" = "sports_club_coed-Football", "6" = "sports_uil_coed-Football", "-99" = "NA")))
@@ -251,12 +198,6 @@ Football_final$football <- NULL
 
 Football_final$ind <- NULL
 
-### install and load writexl package
-
-library(writexl)
-
-write_xlsx(Football_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Football_final.xlsx')
-
 ```
 
 ```{r Golf}
@@ -265,8 +206,6 @@ library(tidyverse)
 
 Golf <- Sports[, c("campus_number", "golf")]
 
-class(Golf$golf)
-####
 
 Golf <- Golf %>%
   mutate(golf = str_replace_all(golf, c("1" = "sports_club_boys-Golf", "2" = "sports_uil_boys-Golf", "3" = "sports_club_girls-Golf", "4" = "sports_uil_girls-Golf", "5" = "sports_club_coed-Golf", "6" = "sports_uil_coed-Golf", "-99" = "NA")))
@@ -293,12 +232,6 @@ Golf_final <-filter(Golf_final, type!='NA')
 Golf_final$golf <- NULL
 
 Golf_final$ind <- NULL
-
-### install and load writexl package
-
-library(writexl)
-
-write_xlsx(Golf_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Golf_final.xlsx')
 
 ```
 
@@ -336,12 +269,6 @@ Soccer_final$soccer <- NULL
 
 Soccer_final$ind <- NULL
 
-### install and load writexl package
-
-library(writexl)
-
-write_xlsx(Soccer_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Soccer_final.xlsx')
-
 ```
 
 ```{r Softball}
@@ -350,7 +277,6 @@ library(tidyverse)
 
 Softball <- Sports[, c("campus_number", "softball")]
 
-##
 
 Softball <- Softball %>%
   mutate(softball = str_replace_all(softball, c("1" = "sports_club_boys-Softball", "2" = "sports_uil_boys-Softball", "3" = "sports_club_girls-Softball", "4" = "sports_uil_girls-Softball", "5" = "sports_club_coed-Softball", "6" = "sports_uil_coed-Softball", "-99" = "NA")))
@@ -377,12 +303,6 @@ Softball_final <-filter(Softball_final, type!='NA')
 Softball_final$softball <- NULL
 
 Softball_final$ind <- NULL
-
-### install and load writexl package
-
-library(writexl)
-
-write_xlsx(Softball_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Softball_final.xlsx')
 
 ```
 
@@ -420,12 +340,6 @@ Swim_final$swim <- NULL
 
 Swim_final$ind <- NULL
 
-### install and load writexl package
-
-library(writexl)
-
-write_xlsx(Swim_final, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\Swim_final.xlsx')
-
 ```
 
 ```{r Team_tennis}
@@ -434,7 +348,6 @@ library(tidyverse)
 
 Team_tennis <- Sports[, c("campus_number", "team_tennis")]
 
-##
 
 Team_tennis <- Team_tennis %>%
   mutate(team_tennis = str_replace_all(team_tennis, c("1" = "sports_club_boys-Cheer/Drill", "2" = "sports_uil_boys-Cheer/Drill", "3" = "sports_club_girls-Cheer/Drill", "4" = "sports_uil_girls-Cheer/Drill", "5" = "sports_club_coed-Cheer/Drill", "6" = "sports_uil_coed-Cheer/Drill", "-99" = "NA")))
@@ -1246,8 +1159,9 @@ All_Sports <- left_join(all_campuses, All_Sports, by = "entity_id")
 
 All_Sports <-All_Sports %>%
  mutate(value = ifelse(is.na(value), "Sports Not Offered", value), 
-        type = ifelse(is.na(type), "sports", type)) 
+        type = ifelse(is.na(type), "sports", type))
 
+All_Sports[, "id"] <-""
  
 #### All_Sports$index <- 1:nrow(All_Sports)  ####
 
@@ -1260,7 +1174,7 @@ library(writexl)
 write_xlsx(All_Sports, 'R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\All_Sports.xlsx')
 
 
-write.csv(All_Sports, "R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\All_Sports_final.csv", row.names=FALSE)
+write.csv(All_Sports, "R:\\Specialists Transfer\\Ken\\GitHub\\Schoolfinder_Sports\\All_Sports_final_id.csv", row.names=FALSE)
 ```
 
 
